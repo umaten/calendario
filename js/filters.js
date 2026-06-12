@@ -7,13 +7,13 @@ const TYPES = [
   { value: 'other', label: 'Otro',   color: '#7BC67E' },
 ];
 
-// ─── Renderizar filtros ─────────────────────────────────────────
+// ─── Renderizar todos los filtros ────────────────────────────────
 export function renderFilters() {
   renderTypeFilters();
   renderCourseFilters();
 }
 
-// ─── Filtros por tipo ───────────────────────────────────────────
+// ─── Filtros por tipo ────────────────────────────────────────────
 function renderTypeFilters() {
   const container = document.getElementById('filter-type');
   container.innerHTML = '';
@@ -29,7 +29,6 @@ function renderTypeFilters() {
     `;
 
     chip.addEventListener('click', () => {
-      // Toggle: si ya está activo lo desactiva
       state.activeTypeFilter = state.activeTypeFilter === type.value ? null : type.value;
       renderTypeFilters();
       renderCalendar();
@@ -39,13 +38,27 @@ function renderTypeFilters() {
   });
 }
 
-// ─── Filtros por curso ──────────────────────────────────────────
+// ─── Filtros por curso (académico) o anotaciones (personal) ─────
 export function renderCourseFilters() {
   const container = document.getElementById('filter-course');
   container.innerHTML = '';
 
+  if (state.mode === 'personal') {
+    if (state.notes.length === 0) {
+      container.innerHTML = '<p style="font-size:0.75rem; color:#6B7280;">Sin anotaciones aún</p>';
+      return;
+    }
+    state.notes.forEach(note => {
+      const chip = document.createElement('div');
+      chip.classList.add('filter-chip');
+      chip.innerHTML = `<span class="filter-dot" style="background-color:#7BC67E"></span>${note}`;
+      container.appendChild(chip);
+    });
+    return;
+  }
+
   if (state.courses.length === 0) {
-    container.innerHTML = '<p style="font-size:0.75rem; color: #6B7280;">Sin cursos aún</p>';
+    container.innerHTML = '<p style="font-size:0.75rem; color:#6B7280;">Sin cursos aún</p>';
     return;
   }
 

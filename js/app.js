@@ -2,7 +2,7 @@ import { renderCalendar, buildGrid } from './calendar.js';
 import { initModal, openModal } from './modal.js';
 import { renderUpcoming } from './upcoming.js';
 import { renderFilters } from './filters.js';
-import { loadState } from './storage.js';
+import { loadState, switchMode } from './storage.js';
 import { initTheme } from './theme.js';
 
 // ─── Estado global ───────────────────────────────────────────────
@@ -11,16 +11,19 @@ export const state = {
   currentMonth: new Date().getMonth(),
   events: [],
   courses: [],
+  notes: [],
   activeTypeFilter: null,
   activeCourseFilter: null,
   semesterStart: null,
   semesterWeeks: 16,
+  mode: 'academic', // 'academic' | 'personal'
 };
 
 // ─── Inicialización ──────────────────────────────────────────────
 function init() {
   loadState(state);
   initTheme();
+  renderMode();
   renderFilters();
   renderCalendar();
   renderUpcoming();
@@ -30,13 +33,35 @@ function init() {
   document.getElementById('btn-prev').addEventListener('click', () => cambiarMes(-1));
   document.getElementById('btn-next').addEventListener('click', () => cambiarMes(1));
 
+  // Botón cambiar modo
+  document.getElementById('btn-mode').addEventListener('click', () => {
+    const newMode = state.mode === 'academic' ? 'personal' : 'academic';
+    switchMode(state, newMode);
+    state.activeTypeFilter  = null;
+    state.activeCourseFilter = null;
+    renderMode();
+    renderFilters();
+    renderCalendar();
+    renderUpcoming();
+  });
+
   initCarrusel();
+}
+
+// ─── Actualizar UI según el modo ─────────────────────────────────
+export function renderMode() {
+  const btnMode    = document.getElementById('btn-mode');
+  const sideLabel  = document.getElementById('sidebar-course-label');
+  const isAcademic = state.mode === 'academic';
+
+  btnMode.textContent   = isAcademic ? '📝 Modo personal' : '🎓 Modo académico';
+  sideLabel.textContent = isAcademic ? 'Filtrar por curso' : 'Anotaciones';
 }
 
 // ─── Carrusel ────────────────────────────────────────────────────
 function initCarrusel() {
   const calendarMain = document.getElementById('calendar-main');
-  let startX    = 0;
+  let startX     = 0;
   let isDragging = false;
   let animating  = false;
 
@@ -53,11 +78,9 @@ function initCarrusel() {
     if (!isDragging || animating) return;
     const diff = clientX - startX;
 
-    // Mover el grid actual
     getGrid().style.transform = `translateX(${diff}px)`;
 
-    // Preparar y mover el grid del mes adyacente
-    const nextGrid = getGridNext();
+    const nextGrid  = getGridNext();
     const direccion = diff < 0 ? 1 : -1;
     const nextMonth = state.currentMonth + direccion;
     const nextYear  = nextMonth > 11 ? state.currentYear + 1
@@ -65,7 +88,6 @@ function initCarrusel() {
                     : state.currentYear;
     const nextMonthNorm = (nextMonth + 12) % 12;
 
-    // Solo reconstruir si cambió de dirección o es la primera vez
     if (nextGrid.dataset.month !== String(nextMonthNorm) ||
         nextGrid.dataset.year  !== String(nextYear)) {
       buildGrid(nextGrid, nextYear, nextMonthNorm);
@@ -73,10 +95,9 @@ function initCarrusel() {
       nextGrid.dataset.year  = nextYear;
     }
 
-    // Posicionar el grid siguiente al lado del actual
     const offset = diff < 0
-      ? calendarMain.offsetWidth + diff   // viene de la derecha
-      : -calendarMain.offsetWidth + diff; // viene de la izquierda
+      ? calendarMain.offsetWidth + diff
+      : -calendarMain.offsetWidth + diff;
 
     nextGrid.style.transform = `translateX(${offset}px)`;
   }
@@ -85,25 +106,22 @@ function initCarrusel() {
     if (!isDragging) return;
     isDragging = false;
 
-    const diff    = clientX - startX;
-    const umbral  = calendarMain.offsetWidth * 0.25;
-    const grid    = getGrid();
+    const diff     = clientX - startX;
+    const umbral   = calendarMain.offsetWidth * 0.25;
+    const grid     = getGrid();
     const nextGrid = getGridNext();
 
     if (Math.abs(diff) >= umbral) {
-      // Pasó el umbral — completar la transición
       animating = true;
       const direccion = diff < 0 ? 1 : -1;
       const salida    = diff < 0 ? -calendarMain.offsetWidth : calendarMain.offsetWidth;
-      const entrada   = 0;
 
       grid.style.transition     = 'transform 250ms ease';
       nextGrid.style.transition = 'transform 250ms ease';
       grid.style.transform      = `translateX(${salida}px)`;
-      nextGrid.style.transform  = `translateX(${entrada}px)`;
+      nextGrid.style.transform  = 'translateX(0)';
 
       grid.addEventListener('transitionend', () => {
-        // Limpiar ambos grids antes de renderizar
         grid.style.transition     = '';
         grid.style.transform      = '';
         nextGrid.style.transition = '';
@@ -116,7 +134,6 @@ function initCarrusel() {
       }, { once: true });
 
     } else {
-      // No llegó — volver al estado original
       grid.style.transition     = 'transform 250ms ease';
       nextGrid.style.transition = 'transform 250ms ease';
       grid.style.transform      = 'translateX(0)';
@@ -126,14 +143,14 @@ function initCarrusel() {
         grid.style.transition     = '';
         nextGrid.style.transition = '';
         grid.style.transform      = '';
-        nextGrid.style.transform  = '';
+        nextGrid.style.transform  = 'translateX(100%)';
+        nextGrid.innerHTML        = '';
         nextGrid.dataset.month    = '';
         nextGrid.dataset.year     = '';
       }, { once: true });
     }
   }
 
-  // Mouse
   calendarMain.addEventListener('mousedown',  (e) => {
     if (e.target.classList.contains('event-chip')) return;
     if (e.target.closest('#calendar-nav')) return;
@@ -143,7 +160,6 @@ function initCarrusel() {
   calendarMain.addEventListener('mouseup',    (e) => onEnd(e.clientX));
   calendarMain.addEventListener('mouseleave', (e) => { if (isDragging) onEnd(e.clientX); });
 
-  // Táctil
   calendarMain.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX));
   calendarMain.addEventListener('touchmove',  (e) => onMove(e.touches[0].clientX));
   calendarMain.addEventListener('touchend',   (e) => onEnd(e.changedTouches[0].clientX));

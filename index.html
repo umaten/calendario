@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="/scss/main.css" />
 </head>
 <body>
-  
+
   <!-- ENCABEZADO -->
   <header>
     <h1>Calendario Académico</h1>
     <div>
+      <button id="btn-mode" class="btn-ghost">📝 Modo personal</button>
       <button id="btn-theme" class="btn-ghost">Modo oscuro</button>
       <button id="btn-new-event" class="btn-primary">+ Nuevo evento</button>
     </div>
@@ -27,7 +28,7 @@
         <div id="filter-type"></div>
       </section>
       <section>
-        <h2>Filtrar por curso</h2>
+        <h2 id="sidebar-course-label">Filtrar por curso</h2>
         <div id="filter-course"></div>
       </section>
     </aside>
