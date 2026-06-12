@@ -1,0 +1,103 @@
+:root {
+  --color-bg: #F7F8FC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E5EF;
+  --color-text: #1A1D2E;
+  --color-text-muted: #6B7280;
+}
+
+[data-theme=dark] {
+  --color-bg: #0F1117;
+  --color-surface: #1A1D2E;
+  --color-border: #2C2F3E;
+  --color-text: #E8EAF6;
+  --color-text-muted: #8B8FA8;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 1.5rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+#app-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 240px;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+#sidebar-left {
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: 1.25rem 1rem;
+  overflow-y: auto;
+}
+#sidebar-left h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+#sidebar-left section + section {
+  margin-top: 1.5rem;
+}
+
+#calendar-main {
+  padding: 1.5rem;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#calendar-main:active {
+  cursor: grabbing;
+}
+
+#calendar-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+#calendar-grid,
+#calendar-grid-next {
+  display: grid;
+  grid-template-columns: 40px repeat(7, 1fr);
+  gap: 4px;
+  width: 100%;
+  background-color: var(--color-bg);
+}
+
+#calendar-grid-next {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+}
+
+#sidebar-right {
+  background-color: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  padding: 1.25rem 1rem;
+  overflow-y: auto;
+}
+#sidebar-right h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}/*# sourceMappingURL=layout.css.map */

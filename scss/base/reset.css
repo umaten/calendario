@@ -1,0 +1,59 @@
+:root {
+  --color-bg: #F7F8FC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E5EF;
+  --color-text: #1A1D2E;
+  --color-text-muted: #6B7280;
+}
+
+[data-theme=dark] {
+  --color-bg: #0F1117;
+  --color-surface: #1A1D2E;
+  --color-border: #2C2F3E;
+  --color-text: #E8EAF6;
+  --color-text-muted: #8B8FA8;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 10px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+input, select, textarea {
+  font: inherit;
+  outline: none;
+}/*# sourceMappingURL=reset.css.map */

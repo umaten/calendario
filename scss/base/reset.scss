@@ -1,0 +1,43 @@
+@use 'variables' as *;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 10px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-sans;
+  font-size: 1rem;
+  color: $color-text;
+  background-color: $color-bg;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul { list-style: none; }
+
+input, select, textarea {
+  font: inherit;
+  outline: none;
+}

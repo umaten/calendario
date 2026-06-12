@@ -1,0 +1,104 @@
+@use 'variables' as *;
+
+// ─── Overlay ────────────────────────────────────────────────────
+#modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+
+  &.active {
+    display: flex;
+  }
+}
+
+// ─── Caja del modal ─────────────────────────────────────────────
+#modal {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-6;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: $shadow-lg;
+  position: relative;
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: $space-5;
+  }
+
+  #modal-close {
+    position: absolute;
+    top: $space-4;
+    right: $space-4;
+    font-size: 1rem;
+    color: $color-text-muted;
+    padding: $space-1 $space-2;
+    border-radius: $radius-sm;
+    transition: background-color $transition;
+
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+}
+
+// ─── Formulario ─────────────────────────────────────────────────
+#event-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $color-text-muted;
+    margin-bottom: $space-1;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: $space-3 $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    background-color: $color-bg;
+    color: $color-text;
+    transition: border-color $transition;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+
+  input[type="color"] {
+    padding: $space-2;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  button[type="submit"] {
+    align-self: flex-end;
+    padding: $space-3 $space-6;
+    background-color: $color-primary;
+    color: #fff;
+    border-radius: $radius-md;
+    font-weight: 500;
+    transition: opacity $transition;
+
+    &:hover {
+      opacity: 0.88;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+:root {
+  --color-bg: #F7F8FC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E5EF;
+  --color-text: #1A1D2E;
+  --color-text-muted: #6B7280;
+}
+
+[data-theme=dark] {
+  --color-bg: #0F1117;
+  --color-surface: #1A1D2E;
+  --color-border: #2C2F3E;
+  --color-text: #E8EAF6;
+  --color-text-muted: #8B8FA8;
+}
+
+.btn-primary {
+  padding: 0.5rem 1.25rem;
+  background-color: #5B7FFF;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: opacity 200ms ease;
+}
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-ghost {
+  padding: 0.5rem 1rem;
+  color: var(--color-text-muted);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  transition: background-color 200ms ease;
+}
+.btn-ghost:hover {
+  background-color: var(--color-border);
+}/*# sourceMappingURL=buttons.css.map */

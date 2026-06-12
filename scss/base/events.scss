@@ -1,0 +1,56 @@
+@use 'variables' as *;
+
+// ─── Chip de evento dentro de una celda ─────────────────────────
+.event-chip {
+  display: block;
+  border-radius: $radius-sm;
+  padding: 2px $space-2;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: grab;
+  transition: opacity $transition, transform $transition;
+  margin-bottom: 2px;
+  user-select: none;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    cursor: grabbing;
+    transform: scale(0.97);
+  }
+}
+
+// ─── Colores por tipo (fallback si no hay color personalizado) ───
+.event-chip--task  { background-color: $color-task; }
+.event-chip--exam  { background-color: $color-exam; }
+.event-chip--other { background-color: $color-other; }
+
+// ─── Estado mientras se arrastra ────────────────────────────────
+.event-chip--dragging {
+  opacity: 0.35;
+}
+
+// ─── Animación de slide al cambiar mes ──────────────────────────
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+#calendar-grid.slide-left {
+  animation: slideInLeft 220ms ease;
+}
+
+#calendar-grid.slide-right {
+  animation: slideInRight 220ms ease;
+}

@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+.btn-primary {
+  padding: $space-2 $space-5;
+  background-color: $color-primary;
+  color: #fff;
+  border-radius: $radius-md;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+.btn-ghost {
+  padding: $space-2 $space-4;
+  color: $color-text-muted;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  transition: background-color $transition;
+
+  &:hover {
+    background-color: $color-border;
+  }
+}

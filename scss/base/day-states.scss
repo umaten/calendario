@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+// ─── Día de hoy ─────────────────────────────────────────────────
+.day-cell--today {
+  border-color: $color-primary;
+  background-color: rgba($color-primary, 0.04);
+
+  .day-number {
+    background-color: $color-primary;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ─── Días de otro mes ───────────────────────────────────────────
+.day-cell--other-month {
+  opacity: 0.4;
+}
+
+// ─── Número del día ─────────────────────────────────────────────
+.day-number {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $color-text-muted;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-1;
+}

@@ -1,0 +1,83 @@
+@use 'variables' as *;
+
+// ─── Próximos eventos ───────────────────────────────────────────
+#upcoming-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: $space-3;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-3;
+    padding: $space-3 $space-2;
+    border-bottom: 1px solid $color-border;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-radius: $radius-sm;
+    transition: background-color $transition;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.04);
+    }
+  }
+}
+
+.upcoming-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.upcoming-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.upcoming-title {
+  font-weight: 500;
+  color: $color-text;
+}
+
+.upcoming-date {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+// ─── Filtros sidebar izquierdo ──────────────────────────────────
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  border: 1px solid $color-border;
+  background-color: $color-bg;
+  color: $color-text-muted;
+  cursor: pointer;
+  transition: all $transition;
+  margin-bottom: $space-2;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-text;
+  }
+
+  &.active {
+    background-color: rgba($color-primary, 0.08);
+    border-color: $color-primary;
+    color: $color-primary;
+    font-weight: 500;
+  }
+}
+
+.filter-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

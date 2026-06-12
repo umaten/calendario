@@ -1,0 +1,46 @@
+:root {
+  --color-bg: #F7F8FC;
+  --color-surface: #FFFFFF;
+  --color-border: #E2E5EF;
+  --color-text: #1A1D2E;
+  --color-text-muted: #6B7280;
+}
+
+[data-theme=dark] {
+  --color-bg: #0F1117;
+  --color-surface: #1A1D2E;
+  --color-border: #2C2F3E;
+  --color-text: #E8EAF6;
+  --color-text-muted: #8B8FA8;
+}
+
+.day-cell--today {
+  border-color: #5B7FFF;
+  background-color: rgba(91, 127, 255, 0.04);
+}
+.day-cell--today .day-number {
+  background-color: #5B7FFF;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-cell--other-month {
+  opacity: 0.4;
+}
+
+.day-number {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}/*# sourceMappingURL=day-states.css.map */

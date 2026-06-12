@@ -1,0 +1,97 @@
+@use 'variables' as *;
+
+// ─── Header ─────────────────────────────────────────────────────
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $header-height;
+  padding: 0 $space-6;
+  background-color: $color-surface;
+  border-bottom: 1px solid $color-border;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: $shadow-sm;
+}
+
+// ─── Layout de tres columnas ────────────────────────────────────
+#app-layout {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr $upcoming-width;
+  height: calc(100vh - #{$header-height});
+  overflow: hidden;
+}
+
+// ─── Sidebar izquierdo ──────────────────────────────────────────
+#sidebar-left {
+  background-color: $color-surface;
+  border-right: 1px solid $color-border;
+  padding: $space-5 $space-4;
+  overflow-y: auto;
+
+  h2 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-muted;
+    margin-bottom: $space-3;
+  }
+
+  section + section {
+    margin-top: $space-6;
+  }
+}
+
+// ─── Área del calendario ────────────────────────────────────────
+#calendar-main {
+  padding: $space-6;
+  overflow: hidden;
+  background-color: $color-bg;
+  cursor: grab;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// ─── Carrusel ────────────────────────────────────────────────────
+#calendar-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+#calendar-grid,
+#calendar-grid-next {
+  display: grid;
+  grid-template-columns: 40px repeat(7, 1fr);
+  gap: 4px;
+  width: 100%;
+  background-color: $color-bg;
+}
+
+#calendar-grid-next {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+}
+
+// ─── Sidebar derecho (próximos eventos) ─────────────────────────
+#sidebar-right {
+  background-color: $color-surface;
+  border-left: 1px solid $color-border;
+  padding: $space-5 $space-4;
+  overflow-y: auto;
+
+  h2 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $color-text-muted;
+    margin-bottom: $space-3;
+  }
+}

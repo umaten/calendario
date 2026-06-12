@@ -1,0 +1,59 @@
+// ─── Variables CSS nativas (para dark mode) ──────────────────────
+:root {
+  --color-bg:         #F7F8FC;
+  --color-surface:    #FFFFFF;
+  --color-border:     #E2E5EF;
+  --color-text:       #1A1D2E;
+  --color-text-muted: #6B7280;
+}
+
+[data-theme="dark"] {
+  --color-bg:         #0F1117;
+  --color-surface:    #1A1D2E;
+  --color-border:     #2C2F3E;
+  --color-text:       #E8EAF6;
+  --color-text-muted: #8B8FA8;
+}
+
+// ─── Variables SCSS (usan las CSS vars) ─────────────────────────
+$color-primary:    #5B7FFF;
+$color-accent:     #F5A623;
+
+$color-task:  #5B7FFF;
+$color-exam:  #E05A5A;
+$color-other: #7BC67E;
+
+$color-bg:         var(--color-bg);
+$color-surface:    var(--color-surface);
+$color-border:     var(--color-border);
+$color-text:       var(--color-text);
+$color-text-muted: var(--color-text-muted);
+
+// ─── Tipografía ──────────────────────────────────────────────────
+$font-sans: 'Inter', system-ui, sans-serif;
+
+// ─── Espaciado ───────────────────────────────────────────────────
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+
+// ─── Layout ──────────────────────────────────────────────────────
+$sidebar-width:   220px;
+$upcoming-width:  240px;
+$header-height:   60px;
+
+// ─── Bordes y sombras ────────────────────────────────────────────
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+$shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+$shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+$shadow-lg: 0 8px 24px rgba(0,0,0,0.14);
+
+// ─── Transiciones ────────────────────────────────────────────────
+$transition: 200ms ease;

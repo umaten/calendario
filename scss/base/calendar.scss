@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+// ─── Navegación de mes ──────────────────────────────────────────
+#calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-5;
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+
+  .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    min-width: 80px;
+    justify-content: flex-end;
+  }
+
+  // Espacio vacío a la izquierda para balancear los botones de la derecha
+  &::before {
+    content: '';
+    min-width: 80px;
+  }
+
+  button {
+    font-size: 1.25rem;
+    color: $color-text-muted;
+    padding: $space-2 $space-3;
+    border-radius: $radius-md;
+    transition: background-color $transition;
+
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+}
+
+// ─── Cabeceras de días ──────────────────────────────────────────
+.weekday-header {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  padding: $space-2 0;
+}
+
+// ─── Celdas de días ─────────────────────────────────────────────
+.day-cell {
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  min-height: 110px;
+  padding: $space-2;
+  cursor: pointer;
+  transition: border-color $transition;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
