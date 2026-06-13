@@ -7,10 +7,10 @@ const overlay = document.getElementById('modal-overlay');
 const form = document.getElementById('event-form');
 
 // ─── Abrir modal ────────────────────────────────────────────────
-// eventId: si es null, es un evento nuevo
-// date: fecha preseleccionada al hacer click en una celda
 export function openModal(eventId = null, date = null) {
   form.reset();
+
+  const deleteBtn = document.getElementById('btn-delete-event');
 
   if (eventId) {
     const ev = state.events.find(e => e.id === eventId);
@@ -25,6 +25,8 @@ export function openModal(eventId = null, date = null) {
 
     form.dataset.editId = eventId;
     populateCourses(ev.courseId);
+
+    if (deleteBtn) deleteBtn.style.display = 'inline-flex';
   } else {
     document.querySelector('#modal h3').textContent = 'Nuevo evento';
     delete form.dataset.editId;
@@ -33,6 +35,8 @@ export function openModal(eventId = null, date = null) {
     document.getElementById('event-color').value = '#5B7FFF';
 
     populateCourses(null);
+
+    if (deleteBtn) deleteBtn.style.display = 'none';
   }
 
   overlay.classList.remove('hidden');
@@ -45,19 +49,21 @@ export function closeModal() {
 
 // ─── Inicializar eventos del modal ──────────────────────────────
 export function initModal() {
-  // Cerrar al hacer click en overlay
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeModal();
   });
 
-  // Botón cerrar
   document.getElementById('modal-close').addEventListener('click', closeModal);
 
-  // Submit del formulario
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     handleSubmit();
   });
+
+  const deleteBtn = document.getElementById('btn-delete-event');
+  if (deleteBtn) {
+    deleteBtn.addEventListener('click', handleDelete);
+  }
 }
 
 // ─── Guardar evento (crear o editar) ────────────────────────────
@@ -74,13 +80,11 @@ function handleSubmit() {
   const editId = form.dataset.editId;
 
   if (editId) {
-    // Editar evento existente
     const index = state.events.findIndex(e => e.id === editId);
     if (index !== -1) {
       state.events[index] = { ...state.events[index], title, description, type, courseId, date, color };
     }
   } else {
-    // Crear evento nuevo
     const newEvent = {
       id: generateId(),
       title,
@@ -93,7 +97,20 @@ function handleSubmit() {
     state.events.push(newEvent);
   }
 
-  saveEvents(state.events);
+  saveEvents(state.events, state.mode);
+  closeModal();
+  renderCalendar();
+  renderUpcoming();
+}
+
+// ─── Eliminar evento ─────────────────────────────────────────────
+function handleDelete() {
+  const editId = form.dataset.editId;
+  if (!editId) return;
+
+  state.events = state.events.filter(e => e.id !== editId);
+
+  saveEvents(state.events, state.mode);
   closeModal();
   renderCalendar();
   renderUpcoming();

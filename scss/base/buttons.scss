@@ -25,3 +25,17 @@
     background-color: $color-border;
   }
 }
+
+.btn-danger {
+  padding: $space-2 $space-5;
+  background-color: $color-exam;
+  color: #fff;
+  border-radius: $radius-md;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}

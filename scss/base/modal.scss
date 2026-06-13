@@ -37,6 +37,13 @@
   margin-bottom: $space-5;
 }
 
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $space-2;
+}
+
 // ─── Formulario ─────────────────────────────────────────────────
 #event-form {
   display: flex;

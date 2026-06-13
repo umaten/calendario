@@ -245,6 +245,13 @@ header {
   margin-bottom: 1.25rem;
 }
 
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
 #event-form {
   display: flex;
   flex-direction: column;
@@ -314,6 +321,19 @@ header {
 }
 .btn-ghost:hover {
   background-color: var(--color-border);
+}
+
+.btn-danger {
+  padding: 0.5rem 1.25rem;
+  background-color: #E05A5A;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: opacity 200ms ease;
+}
+.btn-danger:hover {
+  opacity: 0.85;
 }
 
 #upcoming-list {

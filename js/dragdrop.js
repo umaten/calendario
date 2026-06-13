@@ -61,7 +61,7 @@ function onDrop(e) {
 
   state.events[index].date = newDate;
 
-  saveEvents(state.events);
+  saveEvents(state.events, state.mode);
   renderCalendar();
   renderUpcoming();
 }
