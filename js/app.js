@@ -52,10 +52,12 @@ function init() {
 export function renderMode() {
   const btnMode    = document.getElementById('btn-mode');
   const sideLabel  = document.getElementById('sidebar-course-label');
+  const title      = document.querySelector('header h1');
   const isAcademic = state.mode === 'academic';
 
   btnMode.textContent   = isAcademic ? '📝 Modo personal' : '🎓 Modo académico';
   sideLabel.textContent = isAcademic ? 'Filtrar por curso' : 'Anotaciones';
+  title.textContent     = isAcademic ? 'Calendario Académico' : 'Calendario Personal';
 }
 
 // ─── Carrusel ────────────────────────────────────────────────────
