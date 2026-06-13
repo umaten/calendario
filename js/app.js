@@ -157,7 +157,7 @@ function initCarrusel() {
 
   calendarMain.addEventListener('mousedown',  (e) => {
     if (e.target.classList.contains('event-chip')) return;
-    if (e.target.closest('#calendar-nav')) return;
+    if (e.target.tagName === 'BUTTON') return;
     onStart(e.clientX);
   });
   calendarMain.addEventListener('mousemove',  (e) => onMove(e.clientX));
