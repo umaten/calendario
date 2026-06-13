@@ -98,13 +98,16 @@ header {
 }
 
 #calendar-main {
-  padding: 1.5rem;
+  padding: 0.5rem 1.5rem;
   overflow: hidden;
   background-color: var(--color-bg);
   cursor: grab;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 #calendar-main:active {
   cursor: grabbing;
@@ -113,14 +116,17 @@ header {
 #calendar-carousel {
   position: relative;
   overflow: hidden;
+  flex: 1;
 }
 
 #calendar-grid,
 #calendar-grid-next {
   display: grid;
   grid-template-columns: 40px repeat(7, 1fr);
+  grid-template-rows: auto repeat(6, 1fr);
   gap: 4px;
   width: 100%;
+  height: 100%;
   background-color: var(--color-bg);
 }
 
@@ -150,7 +156,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 #calendar-nav h2 {
   font-size: 1.25rem;
@@ -194,7 +201,7 @@ header {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 10px;
-  min-height: 110px;
+  min-height: 100px;
   padding: 0.5rem;
   cursor: pointer;
   transition: border-color 200ms ease;

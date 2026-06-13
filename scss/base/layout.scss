@@ -46,11 +46,14 @@ header {
 
 // ─── Área del calendario ────────────────────────────────────────
 #calendar-main {
-  padding: $space-6;
+  padding: $space-2 $space-6;
   overflow: hidden;
   background-color: $color-bg;
   cursor: grab;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:active {
     cursor: grabbing;
@@ -61,14 +64,17 @@ header {
 #calendar-carousel {
   position: relative;
   overflow: hidden;
+  flex: 1;
 }
 
 #calendar-grid,
 #calendar-grid-next {
   display: grid;
   grid-template-columns: 40px repeat(7, 1fr);
+  grid-template-rows: auto repeat(6, 1fr);
   gap: 4px;
   width: 100%;
+  height: 100%;
   background-color: $color-bg;
 }
 

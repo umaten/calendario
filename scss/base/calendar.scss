@@ -5,7 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: $space-5;
+  margin-bottom: $space-2;
+  flex-shrink: 0;
 
   h2 {
     font-size: 1.25rem;
@@ -57,7 +58,7 @@
   background-color: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-md;
-  min-height: 110px;
+  min-height: 100px;
   padding: $space-2;
   cursor: pointer;
   transition: border-color $transition;
