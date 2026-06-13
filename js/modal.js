@@ -4,7 +4,6 @@ import { renderCalendar } from './calendar.js';
 import { renderUpcoming } from './upcoming.js';
 
 const overlay = document.getElementById('modal-overlay');
-const modalTitle = document.getElementById('modal-title') || document.querySelector('#modal h3');
 const form = document.getElementById('event-form');
 
 // ─── Abrir modal ────────────────────────────────────────────────
@@ -14,7 +13,6 @@ export function openModal(eventId = null, date = null) {
   form.reset();
 
   if (eventId) {
-    // Modo edición
     const ev = state.events.find(e => e.id === eventId);
     if (!ev) return;
 
@@ -25,12 +23,9 @@ export function openModal(eventId = null, date = null) {
     document.getElementById('event-date').value        = ev.date;
     document.getElementById('event-color').value       = ev.color || '#5B7FFF';
 
-    // Guardar id en el form para saber que es edición
     form.dataset.editId = eventId;
-
     populateCourses(ev.courseId);
   } else {
-    // Modo creación
     document.querySelector('#modal h3').textContent = 'Nuevo evento';
     delete form.dataset.editId;
 
@@ -40,12 +35,11 @@ export function openModal(eventId = null, date = null) {
     populateCourses(null);
   }
 
-  overlay.classList.add('active');
+  overlay.classList.remove('hidden');
 }
 
-// ─── Cerrar modal ───────────────────────────────────────────────
 export function closeModal() {
-  overlay.classList.remove('active');
+  overlay.classList.add('hidden');
   delete form.dataset.editId;
 }
 

@@ -4,6 +4,7 @@ import { renderUpcoming } from './upcoming.js';
 import { renderFilters } from './filters.js';
 import { loadState, switchMode } from './storage.js';
 import { initTheme } from './theme.js';
+import { initConfig } from './config.js';
 
 // ─── Estado global ───────────────────────────────────────────────
 export const state = {
@@ -28,6 +29,7 @@ function init() {
   renderCalendar();
   renderUpcoming();
   initModal();
+  initConfig();
 
   document.getElementById('btn-new-event').addEventListener('click', () => openModal(null));
   document.getElementById('btn-prev').addEventListener('click', () => cambiarMes(-1));
