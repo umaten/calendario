@@ -1,5 +1,5 @@
 import { state } from './app.js';
-import { saveCourses, generateId } from './storage.js';
+import { saveCourses, saveEvents, generateId } from './storage.js';
 import { renderCourseFilters } from './filters.js';
 import { renderCalendar } from './calendar.js';
 
@@ -36,6 +36,7 @@ export function deleteCourse(id) {
   );
 
   saveCourses(state.courses);
+  saveEvents(state.events, state.mode);
   renderCourseFilters();
   renderCalendar();
 }

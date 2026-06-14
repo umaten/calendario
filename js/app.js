@@ -6,6 +6,7 @@ import { loadState, switchMode } from './storage.js';
 import { initTheme } from './theme.js';
 import { initConfig } from './config.js';
 import { initResponsive } from './responsive.js';
+import { initCoursesModal } from './courses-modal.js';
 
 // ─── Estado global ───────────────────────────────────────────────
 export const state = {
@@ -32,6 +33,7 @@ function init() {
   initModal();
   initConfig();
   initResponsive();
+  initCoursesModal();
 
   // Botones duplicados para móvil — disparan el click del original
   document.getElementById('btn-config-mobile')?.addEventListener('click', () => {

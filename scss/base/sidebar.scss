@@ -81,3 +81,61 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+
+// ─── Header de sección con botón "+ Curso" ──────────────────────
+.sidebar-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: $space-1;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  .btn-small {
+    padding: 0 $space-2;
+    line-height: 1.4;
+  }
+}
+
+.btn-small {
+  padding: 2px $space-2;
+  font-size: 0.7rem;
+}
+
+// ─── Lista de cursos en el modal ─────────────────────────────────
+#courses-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  margin-bottom: $space-4;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.course-item {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.course-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.course-name {
+  flex: 1;
+  font-size: 0.875rem;
+}
+
+.courses-empty {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}

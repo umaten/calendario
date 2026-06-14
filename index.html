@@ -44,7 +44,10 @@
         <div id="filter-type"></div>
       </section>
       <section>
-        <h2 id="sidebar-course-label">Filtrar por curso</h2>
+        <div class="sidebar-section-header">
+          <h2 id="sidebar-course-label">Filtrar por curso</h2>
+          <button id="btn-manage-courses" class="btn-ghost btn-small">+ Curso</button>
+        </div>
         <div id="filter-course"></div>
       </section>
     </aside>
@@ -90,6 +93,31 @@
         <input type="number" id="config-weeks" name="weeks" min="1" max="52" value="16" required />
 
         <button type="submit" class="btn-primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL gestión de cursos -->
+  <div id="courses-overlay" class="modal-overlay hidden">
+    <div class="modal" id="courses-modal">
+      <div class="modal-header">
+        <h3 id="courses-modal-title">Cursos</h3>
+        <button id="courses-close" class="btn-ghost">✕</button>
+      </div>
+
+      <ul id="courses-list"></ul>
+
+      <form id="course-form">
+        <label for="course-name">Nombre del curso</label>
+        <input type="text" id="course-name" name="name" placeholder="Ej: Física" required />
+
+        <label for="course-color">Color</label>
+        <input type="color" id="course-color" name="color" value="#5B7FFF" />
+
+        <div class="modal-actions">
+          <button type="button" id="btn-delete-course" class="btn-danger" style="display:none">Eliminar</button>
+          <button type="submit" class="btn-primary">Guardar</button>
+        </div>
       </form>
     </div>
   </div>
