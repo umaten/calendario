@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: $space-2;
+  margin-bottom: $space-1;
   flex-shrink: 0;
 
   h2 {
@@ -59,6 +59,7 @@
   border: 1px solid $color-border;
   border-radius: $radius-md;
   min-height: 100px;
+  min-width: 0;
   padding: $space-2;
   cursor: pointer;
   transition: border-color $transition;
@@ -66,4 +67,10 @@
   &:hover {
     border-color: $color-primary;
   }
+}
+
+.day-events {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
