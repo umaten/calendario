@@ -336,6 +336,18 @@ header {
   opacity: 0.85;
 }
 
+#btn-theme {
+  padding: 0.5rem 1rem;
+  background-color: #1A1D2E;
+  color: #E8EAF6;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  transition: opacity 200ms ease;
+}
+#btn-theme:hover {
+  opacity: 0.85;
+}
+
 #upcoming-list {
   display: flex;
   flex-direction: column;

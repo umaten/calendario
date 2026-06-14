@@ -39,3 +39,17 @@
     opacity: 0.85;
   }
 }
+
+// ─── Botón de modo oscuro/claro ─────────────────────────────────
+#btn-theme {
+  padding: $space-2 $space-4;
+  background-color: #1A1D2E;
+  color: #E8EAF6;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  transition: opacity $transition;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
