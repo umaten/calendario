@@ -126,7 +126,7 @@ export function createEventChip(ev) {
   if (course) {
     // Diagonal suave: color del tipo a la izquierda, color del curso en la esquina derecha
     const main = baseColor || 'currentColor';
-    chip.style.background = `linear-gradient(135deg, ${main} 0%, ${main} 40%, ${course.color} 100%)`;
+    chip.style.background = `linear-gradient(135deg, ${main} 0%, ${main} 50%, ${course.color} 65%, ${course.color} 100%)`;
   } else if (baseColor) {
     chip.style.backgroundColor = baseColor;
   }
