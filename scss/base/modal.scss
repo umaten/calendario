@@ -18,14 +18,14 @@
   background-color: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
-  padding: $space-6;
+  padding: $space-4 $space-5;
   width: 100%;
-  max-width: 460px;
+  max-width: 420px;
   box-shadow: $shadow-lg;
   position: relative;
 
   h3 {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 }
@@ -34,36 +34,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: $space-5;
+  margin-bottom: $space-3;
 }
 
 .modal-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: $space-2;
+  margin-top: $space-1;
 }
 
 // ─── Formulario ─────────────────────────────────────────────────
 #event-form {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+  gap: $space-2;
 
   label {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: $color-text-muted;
-    margin-bottom: $space-1;
+    margin-bottom: 2px;
   }
 
   input, select, textarea {
     width: 100%;
-    padding: $space-3 $space-4;
+    padding: $space-2 $space-3;
     border: 1px solid $color-border;
     border-radius: $radius-md;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     background-color: $color-bg;
     color: $color-text;
     transition: border-color $transition;
@@ -74,19 +74,19 @@
   }
 
   input[type="color"] {
-    padding: $space-2;
-    height: 40px;
+    padding: $space-1;
+    height: 36px;
     cursor: pointer;
   }
 
   textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 50px;
   }
 
   button[type="submit"] {
     align-self: flex-end;
-    padding: $space-3 $space-6;
+    padding: $space-2 $space-5;
     background-color: $color-primary;
     color: #fff;
     border-radius: $radius-md;
