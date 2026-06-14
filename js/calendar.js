@@ -2,6 +2,7 @@ import { state } from './app.js';
 import { getWeekNumber } from './weeks.js';
 import { openModal } from './modal.js';
 import { initDragAndDrop } from './dragdrop.js';
+import { getCourseById } from './courses.js';
 
 const MONTHS = [
   'Enero','Febrero','Marzo','Abril','Mayo','Junio',
@@ -119,7 +120,16 @@ export function createEventChip(ev) {
   chip.textContent = ev.title;
   chip.dataset.id = ev.id;
 
-  if (ev.color) chip.style.backgroundColor = ev.color;
+  const baseColor = ev.color || null;
+  const course = ev.courseId ? getCourseById(ev.courseId) : null;
+
+  if (course) {
+    // Diagonal suave: color del tipo a la izquierda, color del curso en la esquina derecha
+    const main = baseColor || 'currentColor';
+    chip.style.background = `linear-gradient(135deg, ${main} 0%, ${main} 40%, ${course.color} 100%)`;
+  } else if (baseColor) {
+    chip.style.backgroundColor = baseColor;
+  }
 
   chip.addEventListener('click', (e) => {
     e.stopPropagation();
