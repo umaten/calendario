@@ -6,6 +6,13 @@ import { renderUpcoming } from './upcoming.js';
 const overlay = document.getElementById('modal-overlay');
 const form = document.getElementById('event-form');
 
+// ─── Colores por defecto según tipo de evento ───────────────────
+const TYPE_COLORS = {
+  task:  '#5B7FFF',
+  exam:  '#E05A5A',
+  other: '#7BC67E',
+};
+
 // ─── Abrir modal ────────────────────────────────────────────────
 export function openModal(eventId = null, date = null) {
   form.reset();
@@ -32,7 +39,7 @@ export function openModal(eventId = null, date = null) {
     delete form.dataset.editId;
 
     if (date) document.getElementById('event-date').value = date;
-    document.getElementById('event-color').value = '#5B7FFF';
+    document.getElementById('event-color').value = TYPE_COLORS.task;
 
     populateCourses(null);
 
@@ -64,6 +71,12 @@ export function initModal() {
   if (deleteBtn) {
     deleteBtn.addEventListener('click', handleDelete);
   }
+
+  // Cambiar color automáticamente al elegir el tipo
+  document.getElementById('event-type').addEventListener('change', (e) => {
+    const color = TYPE_COLORS[e.target.value];
+    if (color) document.getElementById('event-color').value = color;
+  });
 }
 
 // ─── Guardar evento (crear o editar) ────────────────────────────
