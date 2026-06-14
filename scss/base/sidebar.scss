@@ -58,7 +58,6 @@
   border: 1px solid $color-border;
   background-color: $color-bg;
   color: $color-text-muted;
-  cursor: pointer;
   transition: all $transition;
   margin-bottom: $space-2;
 
@@ -75,23 +74,46 @@
   }
 }
 
+.filter-chip-name {
+  flex: 1;
+  cursor: pointer;
+}
+
+.course-edit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: $radius-sm;
+  transition: opacity $transition, background-color $transition;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
 .filter-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 // ─── Header de sección con botón "+ Curso" ──────────────────────
+#sidebar-left .sidebar-section-header h2 {
+  margin-bottom: 0;
+}
+
 .sidebar-section-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: $space-1;
-
-  h2 {
-    margin-bottom: 0;
-  }
 
   .btn-small {
     padding: 0 $space-2;

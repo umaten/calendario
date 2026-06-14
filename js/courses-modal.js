@@ -62,6 +62,14 @@ function renderCoursesList() {
   });
 }
 
+// ─── Abrir modal directamente en modo edición de un curso ────────
+export function openCourseEditor(course) {
+  resetForm();
+  renderCoursesList();
+  loadCourseIntoForm(course);
+  overlay.classList.remove('hidden');
+}
+
 // ─── Cargar curso en el formulario para editar ──────────────────
 function loadCourseIntoForm(course) {
   document.getElementById('course-name').value  = course.name;
