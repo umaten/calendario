@@ -10,20 +10,35 @@
 
   <!-- ENCABEZADO -->
   <header>
-    <h1>Calendario Académico</h1>
-    <div>
+    <div class="header-left">
+      <button id="btn-sidebar-left-toggle" class="btn-icon mobile-only" aria-label="Filtros">☰</button>
+      <h1>Calendario Académico</h1>
+    </div>
+    <div class="header-actions">
       <button id="btn-mode" class="btn-ghost">📝 Modo personal</button>
       <button id="btn-config" class="btn-ghost">⚙️ Semestre</button>
       <button id="btn-theme" class="btn-ghost">Modo oscuro</button>
-      <button id="btn-new-event" class="btn-primary">+ Nuevo evento</button>
+      <button id="btn-new-event" class="btn-primary">
+        <span class="btn-text-full">+ Nuevo evento</span>
+        <span class="btn-text-short">+</span>
+      </button>
+      <button id="btn-sidebar-right-toggle" class="btn-icon mobile-only" aria-label="Próximos eventos">📋</button>
     </div>
   </header>
 
   <!-- LAYOUT PRINCIPAL -->
   <div id="app-layout">
 
+    <!-- Overlay para cerrar sidebars en móvil -->
+    <div id="sidebar-overlay" class="hidden"></div>
+
     <!-- Sidebar izquierdo: filtros -->
     <aside id="sidebar-left">
+      <section class="mobile-only sidebar-actions">
+        <button id="btn-mode-mobile" class="btn-ghost">📝 Modo personal</button>
+        <button id="btn-config-mobile" class="btn-ghost">⚙️ Semestre</button>
+        <button id="btn-theme-mobile" class="btn-ghost">Modo oscuro</button>
+      </section>
       <section>
         <h2>Filtrar por tipo</h2>
         <div id="filter-type"></div>

@@ -5,6 +5,7 @@ import { renderFilters } from './filters.js';
 import { loadState, switchMode } from './storage.js';
 import { initTheme } from './theme.js';
 import { initConfig } from './config.js';
+import { initResponsive } from './responsive.js';
 
 // ─── Estado global ───────────────────────────────────────────────
 export const state = {
@@ -30,13 +31,22 @@ function init() {
   renderUpcoming();
   initModal();
   initConfig();
+  initResponsive();
+
+  // Botones duplicados para móvil — disparan el click del original
+  document.getElementById('btn-config-mobile')?.addEventListener('click', () => {
+    document.getElementById('btn-config').click();
+  });
+  document.getElementById('btn-theme-mobile')?.addEventListener('click', () => {
+    document.getElementById('btn-theme').click();
+  });
 
   document.getElementById('btn-new-event').addEventListener('click', () => openModal(null));
   document.getElementById('btn-prev').addEventListener('click', () => cambiarMes(-1));
   document.getElementById('btn-next').addEventListener('click', () => cambiarMes(1));
 
   // Botón cambiar modo
-  document.getElementById('btn-mode').addEventListener('click', () => {
+  function toggleMode() {
     const newMode = state.mode === 'academic' ? 'personal' : 'academic';
     switchMode(state, newMode);
     state.activeTypeFilter  = null;
@@ -45,7 +55,10 @@ function init() {
     renderFilters();
     renderCalendar();
     renderUpcoming();
-  });
+  }
+
+  document.getElementById('btn-mode').addEventListener('click', toggleMode);
+  document.getElementById('btn-mode-mobile')?.addEventListener('click', toggleMode);
 
   initCarrusel();
 }
@@ -60,6 +73,9 @@ export function renderMode() {
   btnMode.textContent   = isAcademic ? '📝 Modo personal' : '🎓 Modo académico';
   sideLabel.textContent = isAcademic ? 'Filtrar por curso' : 'Anotaciones';
   title.textContent     = isAcademic ? 'Calendario Académico' : 'Calendario Personal';
+
+  const btnModeMobile = document.getElementById('btn-mode-mobile');
+  if (btnModeMobile) btnModeMobile.textContent = btnMode.textContent;
 }
 
 // ─── Carrusel ────────────────────────────────────────────────────

@@ -19,4 +19,7 @@ function applyTheme(theme) {
 
   const btn = document.getElementById('btn-theme');
   btn.textContent = theme === 'dark' ? 'Modo claro' : 'Modo oscuro';
+
+  const btnMobile = document.getElementById('btn-theme-mobile');
+  if (btnMobile) btnMobile.textContent = btn.textContent;
 }

@@ -1,0 +1,195 @@
+@use 'variables' as *;
+
+// ─── Clases auxiliares ───────────────────────────────────────────
+.mobile-only {
+  display: none;
+}
+
+.btn-icon {
+  padding: $space-2 $space-3;
+  font-size: 1.1rem;
+  border-radius: $radius-md;
+  transition: background-color $transition;
+  color: $color-text;
+
+  &:hover {
+    background-color: $color-border;
+  }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+#sidebar-overlay {
+  display: none;
+}
+
+// ══════════════════════════════════════════════════════════════
+// TABLET (≤ 1024px) — ocultar sidebar derecho por defecto
+// ══════════════════════════════════════════════════════════════
+@media (max-width: 1024px) {
+  #app-layout {
+    grid-template-columns: $sidebar-width 1fr;
+  }
+
+  #sidebar-right {
+    position: fixed;
+    top: $header-height;
+    right: 0;
+    height: calc(100vh - #{$header-height});
+    width: $upcoming-width;
+    z-index: 150;
+    transform: translateX(100%);
+    transition: transform $transition, background-color $transition;
+    box-shadow: $shadow-lg;
+  }
+
+  #sidebar-right.open {
+    transform: translateX(0);
+  }
+
+  .mobile-only {
+    display: inline-flex;
+  }
+
+  #btn-sidebar-left-toggle {
+    display: none; // sigue visible el sidebar izquierdo en tablet
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// MÓVIL (≤ 768px) — ambos sidebars off-canvas, header compacto
+// ══════════════════════════════════════════════════════════════
+@media (max-width: 768px) {
+  header {
+    padding: 0 $space-3;
+    gap: $space-2;
+  }
+
+  header h1 {
+    font-size: 1rem;
+  }
+
+  .header-actions {
+    gap: $space-1;
+  }
+
+  // Ocultar texto de botones secundarios, dejar solo iconos relevantes
+  #btn-mode,
+  #btn-config,
+  #btn-theme {
+    display: none;
+  }
+
+  #btn-new-event {
+    padding: $space-2 $space-3;
+    font-size: 0.8rem;
+  }
+
+  #app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #btn-sidebar-left-toggle {
+    display: inline-flex;
+  }
+
+  #sidebar-left {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    height: calc(100vh - #{$header-height});
+    width: $sidebar-width;
+    z-index: 150;
+    transform: translateX(-100%);
+    transition: transform $transition, background-color $transition;
+    box-shadow: $shadow-lg;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sidebar-left.open {
+    transform: translateX(0);
+  }
+
+  #sidebar-overlay.visible {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: $header-height;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 140;
+  }
+
+  // Calendario ocupa todo el ancho
+  #calendar-main {
+    padding: $space-2 $space-3;
+  }
+
+  #calendar-grid,
+  #calendar-grid-next {
+    grid-template-columns: 28px repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .day-cell {
+    padding: $space-1;
+    min-height: 60px;
+  }
+
+  .day-number {
+    font-size: 0.75rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .week-label {
+    font-size: 0.6rem;
+    padding: 2px;
+  }
+
+  .weekday-header {
+    font-size: 0.65rem;
+    padding: $space-1 0;
+  }
+
+  .event-chip {
+    font-size: 0.65rem;
+    padding: 1px $space-1;
+  }
+
+  #calendar-nav h2 {
+    font-size: 1rem;
+  }
+
+  // Modales ocupan casi toda la pantalla
+  .modal {
+    max-width: 95vw;
+    margin: $space-3;
+  }
+
+  // Botones de acción dentro del sidebar izquierdo
+  .sidebar-actions.mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    margin-bottom: $space-5;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-border;
+
+    button {
+      width: 100%;
+      justify-content: flex-start;
+      border: 1px solid $color-border;
+    }
+  }
+}
