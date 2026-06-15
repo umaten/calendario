@@ -595,6 +595,50 @@ header {
   opacity: 0.35;
 }
 
+.more-events-wrapper {
+  position: relative;
+}
+
+.more-events-indicator {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 2px 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.more-events-indicator:hover {
+  background-color: rgba(91, 127, 255, 0.1);
+  color: #5B7FFF;
+}
+
+.more-events-popover {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  padding: 0.5rem;
+  z-index: 50;
+}
+
+.more-events-popover .event-chip {
+  white-space: normal;
+  max-width: none;
+}
+
+.more-events-wrapper:hover .more-events-popover {
+  display: flex;
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;

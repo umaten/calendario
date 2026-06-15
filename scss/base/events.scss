@@ -38,6 +38,52 @@
   opacity: 0.35;
 }
 
+// ─── Indicador "+N más" y popover ────────────────────────────────
+.more-events-wrapper {
+  position: relative;
+}
+
+.more-events-indicator {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: $color-text-muted;
+  padding: 2px $space-2;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: background-color $transition, color $transition;
+
+  &:hover {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
+  }
+}
+
+.more-events-popover {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  padding: $space-2;
+  z-index: 50;
+}
+
+.more-events-popover .event-chip {
+  white-space: normal;
+  max-width: none;
+}
+
+.more-events-wrapper:hover .more-events-popover {
+  display: flex;
+}
+
 // ─── Animación de slide al cambiar mes ──────────────────────────
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(40px); }

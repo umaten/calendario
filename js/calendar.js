@@ -86,14 +86,29 @@ function createDayCell(dayObj) {
 
   cell.dataset.date = date.toISOString().split('T')[0];
 
+  const headerEl = document.createElement('div');
+  headerEl.classList.add('day-header');
+
   const numEl = createEl('div', 'day-number', date.getDate());
-  cell.appendChild(numEl);
+  headerEl.appendChild(numEl);
+
+  cell.appendChild(headerEl);
 
   const eventsEl = document.createElement('div');
   eventsEl.classList.add('day-events');
-  getEventsForDay(date).forEach(ev => {
+
+  const dayEvents = getEventsForDay(date);
+  const MAX_VISIBLE = 2;
+
+  dayEvents.slice(0, MAX_VISIBLE).forEach(ev => {
     eventsEl.appendChild(createEventChip(ev));
   });
+
+  if (dayEvents.length > MAX_VISIBLE) {
+    const remaining = dayEvents.slice(MAX_VISIBLE);
+    eventsEl.appendChild(createMoreIndicator(remaining));
+  }
+
   cell.appendChild(eventsEl);
 
   cell.addEventListener('click', (e) => {
@@ -138,9 +153,9 @@ export function createEventChip(ev) {
     ? '0 1px 2px rgba(0,0,0,0.5)'
     : '0 1px 2px rgba(255,255,255,0.5)';
 
-  // Si tiene curso, agregar franja delgada abajo con su color
+  // Si tiene curso, agregar franja delgada interna abajo con su color (línea recta)
   if (course) {
-    chip.style.borderBottom = `3px solid ${course.color}`;
+    chip.style.background = `linear-gradient(to bottom, ${main} 0%, ${main} calc(100% - 3px), ${course.color} calc(100% - 3px), ${course.color} 100%)`;
   }
 
   chip.addEventListener('click', (e) => {
@@ -149,6 +164,31 @@ export function createEventChip(ev) {
   });
 
   return chip;
+}
+
+// ─── Indicador "+N más" con popover al hover ────────────────────
+function createMoreIndicator(remainingEvents) {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('more-events-wrapper');
+
+  const indicator = document.createElement('div');
+  indicator.classList.add('more-events-indicator');
+  indicator.textContent = `+${remainingEvents.length} más`;
+  wrapper.appendChild(indicator);
+
+  const popover = document.createElement('div');
+  popover.classList.add('more-events-popover');
+  remainingEvents.forEach(ev => {
+    popover.appendChild(createEventChip(ev));
+  });
+  wrapper.appendChild(popover);
+
+  // Evitar que el click en el indicador abra el modal de "nuevo evento"
+  wrapper.addEventListener('click', (e) => {
+    if (e.target === indicator) e.stopPropagation();
+  });
+
+  return wrapper;
 }
 
 // ─── Helper ──────────────────────────────────────────────────────
