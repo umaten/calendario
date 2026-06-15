@@ -554,11 +554,12 @@ header {
 
 .event-chip {
   display: block;
+  max-width: 100%;
+  min-width: 0;
   border-radius: 6px;
-  padding: 2px 0.5rem;
+  padding: 2px 0.5rem 1px 0.5rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -568,6 +569,7 @@ header {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  box-sizing: border-box;
 }
 .event-chip:hover {
   opacity: 0.85;

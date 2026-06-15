@@ -3,6 +3,7 @@ import { getWeekNumber } from './weeks.js';
 import { openModal } from './modal.js';
 import { initDragAndDrop } from './dragdrop.js';
 import { getCourseById } from './courses.js';
+import { getContrastColor } from './color-utils.js';
 
 const MONTHS = [
   'Enero','Febrero','Marzo','Abril','Mayo','Junio',
@@ -120,15 +121,26 @@ export function createEventChip(ev) {
   chip.textContent = ev.title;
   chip.dataset.id = ev.id;
 
-  const baseColor = ev.color || null;
+  const TYPE_COLORS = {
+    task:  '#5B7FFF',
+    exam:  '#E05A5A',
+    other: '#7BC67E',
+  };
+
+  const main = ev.color || TYPE_COLORS[ev.type] || '#5B7FFF';
   const course = ev.courseId ? getCourseById(ev.courseId) : null;
 
+  // Fondo siempre el color del tipo/personalizado
+  chip.style.backgroundColor = main;
+  const textColor = getContrastColor(main);
+  chip.style.color = textColor;
+  chip.style.textShadow = textColor === '#FFFFFF'
+    ? '0 1px 2px rgba(0,0,0,0.5)'
+    : '0 1px 2px rgba(255,255,255,0.5)';
+
+  // Si tiene curso, agregar franja delgada abajo con su color
   if (course) {
-    // Diagonal suave: color del tipo a la izquierda, color del curso en la esquina derecha
-    const main = baseColor || 'currentColor';
-    chip.style.background = `linear-gradient(135deg, ${main} 0%, ${main} 50%, ${course.color} 65%, ${course.color} 100%)`;
-  } else if (baseColor) {
-    chip.style.backgroundColor = baseColor;
+    chip.style.borderBottom = `3px solid ${course.color}`;
   }
 
   chip.addEventListener('click', (e) => {

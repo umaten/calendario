@@ -3,11 +3,12 @@
 // ─── Chip de evento dentro de una celda ─────────────────────────
 .event-chip {
   display: block;
+  max-width: 100%;
+  min-width: 0;
   border-radius: $radius-sm;
-  padding: 2px $space-2;
+  padding: 2px $space-2 1px $space-2;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15,6 +16,7 @@
   transition: opacity $transition, transform $transition;
   margin-bottom: 2px;
   user-select: none;
+  box-sizing: border-box;
 
   &:hover {
     opacity: 0.85;
